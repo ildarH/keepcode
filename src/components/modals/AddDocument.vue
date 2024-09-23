@@ -39,7 +39,11 @@ function updateFormValue(event, field) {
               v-for="(value, key) in documentMap"
               :key="`${key}-radio`"
             >
-              <RadioGroupItem :id="`${key}-option`" :value="key" />
+              <RadioGroupItem
+                :id="`${key}-option`"
+                :value="key"
+                class="border-blue-400 text-blue-400"
+              />
               <Label :for="`${key}-option`" class="text-lg">{{ value }}</Label>
             </div>
           </RadioGroup>
@@ -68,6 +72,7 @@ function updateFormValue(event, field) {
           <div class="items-top flex gap-x-2">
             <Checkbox
               id="notify"
+              class="border-blue-400 text-blue-400"
               :checked="documentForm.notify"
               @update:checked="updateFormValue($event, 'notify')"
             />
@@ -83,6 +88,7 @@ function updateFormValue(event, field) {
           <div class="items-top flex gap-x-2 mt-5">
             <Checkbox
               id="createTask"
+              class="border-blue-400 text-blue-400"
               :checked="documentForm.createTask"
               @update:checked="updateFormValue($event, 'createTask')"
             />
