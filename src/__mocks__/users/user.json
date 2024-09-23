@@ -1,0 +1,20 @@
+{
+  "name": "Абрамова Екатерина",
+  "image": "",
+  "gender": "female",
+  "status": "active",
+  "birthday": "2004-04-25T00:00:00",
+  "address": {
+    "city": "Краснодар",
+    "street": "ул. Советская 24, кв. 208"
+  },
+  "phone": {
+    "personal": "8-900-000-00-00",
+    "parent": "8-900-000-00-01"
+  },
+  "social": {
+    "whatsapp": "https://wa.me/79000000000",
+    "telegram": "https://t.me/username",
+    "viber": "viber://chat?number=79000000000"
+  }
+}
