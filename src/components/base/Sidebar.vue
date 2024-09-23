@@ -8,7 +8,7 @@ const { items } = useSidebar()
 <template>
   <aside class="bg-[#458bfb] h-screen drop-shadow-xl">
     <RouterLink class="w-full px-5 py-3.5" to="/">
-      <Logo />
+      <Logo class="w-full" />
     </RouterLink>
     <nav class="mt-10 flex flex-col gap-5">
       <div
