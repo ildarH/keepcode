@@ -9,6 +9,17 @@ import JpgIcon from '@/components/icons/files/Jpg.vue'
 import XlsIcon from '@/components/icons/files/Xls.vue'
 import type { DocumentFilters } from '@/@types/components'
 
+const initialDocumentForm = {
+  type: DocumentType.Contract,
+  name: '',
+  number: '',
+  dateStart: '',
+  dateEnd: '',
+  notify: false,
+  createTask: false,
+  file: null
+}
+
 const { http } = useApi()
 
 const documents = ref<Document[] | null>(null)
@@ -18,16 +29,7 @@ const loading = ref<boolean>(false)
 const documentTypeSelected = ref<DocumentType>()
 const statusSelected = ref<Status>()
 const sortSelected = ref<string>()
-const documentForm = reactive({
-  type: DocumentType.Contract,
-  name: '',
-  number: '',
-  dateStart: '',
-  dateEnd: '',
-  notify: false,
-  createTask: false,
-  file: null
-})
+const documentForm = reactive({ ...initialDocumentForm })
 
 async function fetchDocuments() {
   loading.value = true
@@ -82,6 +84,10 @@ function applySort(payload: { type: DocumentFilters | null; event: { value: stri
   }
 }
 
+function resetDocumentForm() {
+  Object.assign(documentForm, initialDocumentForm)
+}
+
 export const useDocuments = () => {
   const documentMap = ref<Record<DocumentType, string>>({
     [DocumentType.Contract]: 'Договор',
@@ -125,6 +131,7 @@ export const useDocuments = () => {
     documentTypeSelected,
     statusSelected,
     sortSelected,
-    documentForm
+    documentForm,
+    resetDocumentForm
   }
 }
