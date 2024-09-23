@@ -25,14 +25,12 @@ export class Http {
     this.useMockData = config?.useMockData || CONFIG.USE_MOCK
     this.apiUrl = config?.apiUrl || API_URL
     this.mockDelay = config?.mockDelay || CONFIG.MOCK_DELAY
-    console.log('this.useMockData: ', this.useMockData)
   }
 
   private getProfile(): Promise<Profile> {
     if (!this.useMockData.PROFILE) {
       throwErr(ERRORS.NOT_IMPLEMENTED)
     }
-    console.log('MOCKS.profile: ', MOCKS.Profile)
     return this.simulateDelay(Promise.resolve(MOCKS.Profile as Profile))
   }
 
@@ -44,8 +42,6 @@ export class Http {
   }
 
   private getDocuments(): Promise<UserDocument[] | Post[]> {
-    console.log('this.useMockData.DOCUMENTS: ', this.useMockData.DOCUMENTS)
-    console.log('apiUrls: ', this.apiUrl)
     if (!this.useMockData.DOCUMENTS) {
       return fetch(`${this.apiUrl}/posts`).then((res) => res.json())
     }
