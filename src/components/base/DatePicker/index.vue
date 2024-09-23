@@ -13,7 +13,7 @@ const date = defineModel('date')
   />
 </template>
 
-<style>
+<style lang="scss">
 :root {
   /*General*/
   --dp-font-family: 'Raleway', sans-serif;
@@ -84,5 +84,9 @@ const date = defineModel('date')
   --dp-range-between-dates-background-color: var(--dp-hover-color, #f3f3f3);
   --dp-range-between-dates-text-color: var(--dp-hover-text-color, #212121);
   --dp-range-between-border-color: var(--dp-hover-color, #f3f3f3);
+}
+
+.dp__input {
+  border: 1px solid transparent;
 }
 </style>

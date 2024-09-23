@@ -10,7 +10,7 @@ const { hideModal } = useModal()
 <template>
   <div class="flex justify-between items-center">
     <Filters />
-    <Dialog class="w-96">
+    <Dialog>
       <DialogTrigger asChild>
         <Button class="bg-orange-400 hover:bg-orange-600">Добавить документ</Button>
       </DialogTrigger>
