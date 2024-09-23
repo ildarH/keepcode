@@ -98,7 +98,7 @@ function updateFormValue(event, field) {
         </div>
         <div class="max-w-xl">
           <label
-            class="flex justify-center w-full h-32 px-4 transition bg-gray-100 border-1 border-gray-600 border-solid rounded-md appearance-none cursor-pointer hover:border-gray-400 focus:outline-none drop-shadow-md"
+            class="flex justify-center w-full h-32 px-4 transition bg-gray-100 border-2 border-gray-200 border-solid rounded-md appearance-none cursor-pointer hover:border-gray-400 focus:outline-none drop-shadow-md"
           >
             <span class="flex flex-col justify-center items-center space-x-2">
               <Plus class="w-8 h-8" />
