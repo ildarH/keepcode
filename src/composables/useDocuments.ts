@@ -44,36 +44,41 @@ async function fetchDocuments() {
   }
 }
 
-function applyFilter(event: { type: DocumentFilters; value: string }) {
-  if (event.type === 'documents') {
-    documentTypeSelected.value = event.type
-    filteredDocuments.value = documents.value?.filter((doc) => doc.type === event.value)
-  } else if (event.type === 'status') {
-    statusSelected.value = event.type
-    filteredDocuments.value = documents.value?.filter((doc) => doc.status === event.value)
-  } else if (event.type === null) {
-    documentTypeSelected.value = null
-    statusSelected.value = null
-    filteredDocuments.value = toRaw(documents.value)
+function applyFilter(payload: { type: DocumentFilters; event: { value: string } | null }) {
+  if (payload.type === 'documents') {
+    documentTypeSelected.value = payload.event ? payload.event.value : null
+  } else if (payload.type === 'status') {
+    statusSelected.value = payload.event ? payload.event.value : null
   }
+
+  filteredDocuments.value = toRaw(documents.value)?.filter((doc) => {
+    const matchesDocumentType = documentTypeSelected.value
+      ? doc.type === documentTypeSelected.value
+      : true
+
+    const matchesStatus = statusSelected.value ? doc.status === statusSelected.value : true // Если фильтр не установлен, пропускаем проверку
+
+    return matchesDocumentType && matchesStatus
+  })
 }
 
-function applySort(event: { type: DocumentFilters | null; value: string }) {
-  sortSelected.value = event.type
-  if (event.value === 'dateStart') {
+function applySort(payload: { type: DocumentFilters | null; event: { value: string } | null }) {
+  sortSelected.value = payload.type
+  if (payload.event?.value === 'dateStart') {
     filteredDocuments.value = documents.value?.sort(
       (a, b) => new Date(a.dateStart).getTime() - new Date(b.dateStart).getTime()
     )
-  } else if (event.type === 'dateEnd') {
+  } else if (payload.event?.value === 'dateEnd') {
     filteredDocuments.value = documents.value?.sort(
       (a, b) => new Date(a.dateEnd).getTime() - new Date(b.dateEnd).getTime()
     )
-  } else if (event.type === 'type') {
+  } else if (payload.event?.value === 'type') {
     filteredDocuments.value = documents.value?.sort((a, b) => a.type.localeCompare(b.type))
-  } else if (event.type === 'status') {
+  } else if (payload.event?.value === 'status') {
     filteredDocuments.value = documents.value?.sort((a, b) => a.status.localeCompare(b.status))
-  } else if (event.type === null) {
+  } else {
     filteredDocuments.value = documents.value
+    sortSelected.value = null
   }
 }
 
